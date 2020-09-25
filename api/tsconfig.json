@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "module": "commonjs",
+    "declaration": true,
+    "watch": true
+  },
+
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
