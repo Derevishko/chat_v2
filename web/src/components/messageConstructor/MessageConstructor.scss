@@ -1,0 +1,26 @@
+@import "../../scss/buttons";
+
+.message-constructor {
+  width: 100%;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  background: linear-gradient(
+    rgba(150, 150, 150, 0.1),
+    rgba(150, 150, 150, 0),
+    rgba(150, 150, 150, 0.1)
+  );
+  & > textarea {
+    min-width: 100%;
+    max-width: 100%;
+    height: 40px;
+    min-height: 40px;
+    max-height: 100px;
+    background-color: white;
+    border: none;
+  }
+  .buttons {
+    .send {
+      @extend %main-button;
+    }
+  }
+}
