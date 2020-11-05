@@ -1,3 +1,5 @@
+import * as express from "express";
+import * as express_jwt from "express-jwt";
 import * as jwt from "jsonwebtoken";
 import * as sha256 from "sha256";
 
@@ -81,6 +83,14 @@ class AuthController {
       status: 200,
       data: undefined,
     };
+  }
+
+  public async auth(
+    req: express.Request<any, any, any, any>,
+    res,
+    next: () => void
+  ) {
+    next();
   }
 
   private createTokens(userId: string): AuthControllerNamespace.ITokens {

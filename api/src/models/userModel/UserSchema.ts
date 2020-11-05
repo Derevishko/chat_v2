@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 
 const UserSchema: TUserSchema = new mongoose.Schema({
-  login: { type: String, min: 3, max: 32 },
+  login: { type: String, min: 3, max: 32, unique: true },
   password: { type: String, minlength: 64, maxlength: 64 },
   online: { type: Boolean, default: false },
   active: { type: Boolean, default: false },

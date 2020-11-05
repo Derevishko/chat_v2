@@ -3,6 +3,7 @@ import * as express from "express";
 import AuthController from "../controllers/authController/AuthController";
 
 const authController = new AuthController();
+
 const authRouter = express.Router();
 
 authRouter.post("/signin", async (req: TSigninReq, res) => {
@@ -21,7 +22,6 @@ authRouter.post("/logout", async (req: TLogoutReq, res) => {
   const response = await authController.logout(req.body);
   res.status(response.status).send(response.data);
 });
-
 export default authRouter;
 
 type TSigninReq = express.Request<

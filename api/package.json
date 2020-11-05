@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc -watch && nodemon dist",
+    "start": "npm run comp && npm run server",
+    "comp": "tsc -watch",
+    "server": "nodemon dist",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": ["sec/*", "node_modules/*"],
+    "delay": "2500"
   },
   "author": "",
   "license": "ISC",

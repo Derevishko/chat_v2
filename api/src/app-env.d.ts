@@ -17,5 +17,20 @@ declare namespace App {
     sectetKey: string;
     expiresInAccessToken: string;
     expiresInRefreshToken: string;
+    port: number;
+  }
+  interface IMessage {
+    chatId: string;
+    user: IUser;
+    text: string;
+    created: Date;
+  }
+  interface IChat {
+    name: string;
+  }
+  interface IUserChat {
+    user: IUser;
+    chat: IChat;
+    lastSawMessage: IMessage;
   }
 }
