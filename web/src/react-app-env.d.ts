@@ -11,4 +11,12 @@ namespace App {
     _id: string;
     login: string;
   }
+  interface IChat {
+    _id: string;
+    name: string;
+  }
+  interface IPaginationParams {
+    skip: number;
+    limit: number;
+  }
 }

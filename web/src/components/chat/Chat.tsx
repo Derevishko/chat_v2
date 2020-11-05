@@ -18,8 +18,8 @@ class Chat extends React.Component<Props, State> {
   public render() {
     return (
       <div className="chat">
-        <ChatMessagesList messages={this.props.messages} />
         <MessageConstructor onSend={this.props.onSend} />
+        <ChatMessagesList messages={this.props.messages} />
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import "./View.scss";
 
-import { RouteChildrenProps, Switch } from "react-router-dom";
+import { Route, RouteChildrenProps, Switch } from "react-router-dom";
 
+import HomeView from "./homeView/HomeView";
 import React from "react";
 
 interface Props extends RouteChildrenProps {}
@@ -13,7 +14,11 @@ class View extends React.Component<Props, State> {
     this.state = {};
   }
   public render() {
-    return <Switch></Switch>;
+    return (
+      <Switch>
+        <Route component={HomeView} />
+      </Switch>
+    );
   }
 }
 export default View;

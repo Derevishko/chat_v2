@@ -1,17 +1,18 @@
-import { AxiosResponse } from "axios";
 import Chat from "../../components/chat/Chat";
 import ChatService from "../../services/ChatService";
 import React from "react";
 import config from "../../config";
 
 interface Props {
-  chatId: string;
+  chat?: App.IChat;
 }
 interface State {
   messages: Array<any>;
+  loading: boolean;
+  previousChat?: App.IChat;
 }
 
-class ChatContainerContainer extends React.Component<Props, State> {
+class ChatContainer extends React.Component<Props, State> {
   private ws?: WebSocket;
   private chatService: ChatService;
   constructor(props: Props) {
@@ -19,6 +20,7 @@ class ChatContainerContainer extends React.Component<Props, State> {
     this.chatService = new ChatService();
     this.state = {
       messages: [],
+      loading: false,
     };
   }
 
@@ -27,20 +29,44 @@ class ChatContainerContainer extends React.Component<Props, State> {
     this.getMessages();
   }
 
+  public componentDidUpdate(prevProps: Props) {
+    if (this.props.chat !== prevProps.chat) {
+      this.getMessages();
+    }
+  }
+
+  private get loading(): boolean {
+    return this.state.loading;
+  }
+  private set loading(loading: boolean) {
+    this.setState({ loading });
+  }
+
   private getMessages() {
+    if (!this.props.chat) return;
+    this.loading = true;
+    let isRestart = this.state.previousChat === this.props.chat;
     this.chatService
-      .getMessages(this.props.chatId, this.state.messages.length, 20)
-      .then((response: AxiosResponse<{ messages: Array<App.IMessage> }>) => {
+      .getMessages({
+        chatId: this.props.chat._id,
+        skip: isRestart ? this.state.messages.length : 0,
+        limit: 20,
+      })
+      .then((messages) => {
         this.setState({
-          messages: response.data.messages.concat(this.state.messages),
+          previousChat: this.props.chat,
+          messages: isRestart ? messages.concat(this.state.messages) : messages,
         });
+      })
+      .finally(() => {
+        this.loading = false;
       });
   }
   private handleSend(text: string) {
+    if (!this.props.chat) return;
     this.chatService
-      .sendMessage(this.props.chatId, text)
-      .then((v) => console.log(v))
-      .catch((e) => console.error(e));
+      .sendMessage({ chatId: this.props.chat._id, text })
+      .then((v) => console.log(v));
   }
 
   private connectToWs() {
@@ -70,4 +96,4 @@ class ChatContainerContainer extends React.Component<Props, State> {
     );
   }
 }
-export default ChatContainerContainer;
+export default ChatContainer;

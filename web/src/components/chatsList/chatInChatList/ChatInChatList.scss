@@ -1,0 +1,10 @@
+@import "../../../scss/constants";
+
+.chat-in-chat-list {
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  &.active {
+    background-color: $color-for-active-in_list;
+  }
+}
