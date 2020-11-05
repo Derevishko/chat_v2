@@ -98,8 +98,9 @@ class ChatController {
       const messages: Array<App.IMessage> = await ChatMessageModel.find(
         { chatId },
         {},
-        { sort: "cerated", skip, limit }
+        { sort: { created: -1 }, skip, limit }
       )
+
         .populate("user", { _id: true, login: true })
         .then((response) => {
           return response.map((e) => e.toObject());
