@@ -1,6 +1,6 @@
 import "./HomeView.scss";
 
-import ChatsListContainer from "../../../containers/chatsList/ChatsListContainer";
+import HomeCarousel from "./homeCarousel/HomeCarousel";
 import React from "react";
 
 interface Props {
@@ -23,7 +23,9 @@ class HomeView extends React.Component<Props, State> {
   public render() {
     return (
       <div className={this.className}>
-        <ChatsListContainer />
+        <HomeCarousel />
+
+        <span>hello world</span>
       </div>
     );
   }

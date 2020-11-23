@@ -1,4 +1,5 @@
 import "./index.scss";
+import "antd/dist/antd.css";
 
 import * as serviceWorker from "./serviceWorker";
 

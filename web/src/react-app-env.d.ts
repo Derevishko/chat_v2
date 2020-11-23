@@ -19,4 +19,9 @@ namespace App {
     skip: number;
     limit: number;
   }
+
+  interface ITokens {
+    access: string;
+    refresh: string;
+  }
 }

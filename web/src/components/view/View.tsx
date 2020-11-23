@@ -5,7 +5,7 @@ import { Route, RouteChildrenProps, Switch } from "react-router-dom";
 import HomeView from "./homeView/HomeView";
 import React from "react";
 
-interface Props extends RouteChildrenProps {}
+interface Props {}
 interface State {}
 
 class View extends React.Component<Props, State> {

@@ -1,0 +1,10 @@
+.header {
+  position: sticky;
+  top: 0;
+
+  height: 40px;
+  background-color: red;
+
+  display: flex;
+  justify-content: space-between;
+}
